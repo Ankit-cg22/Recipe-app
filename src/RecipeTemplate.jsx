@@ -10,7 +10,12 @@ const RecipeTemplate = ({title, calories, image, ingredients}) => {
             </div>
 
             <div className="info">
-                <img src={image} alt={title} />
+                <div className="img-val">
+                    
+                    <img src={image} alt={title} />
+                    <p>calories : {calories}</p>
+                    
+                </div>
                 <div className="ingredients">
                     <ul>
                         <h2>Ingredients:</h2>

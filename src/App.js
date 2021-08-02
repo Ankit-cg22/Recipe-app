@@ -7,17 +7,33 @@ function App() {
   const ID = '298c6e11'
   const KEY = 'c2983269077bf2a001bbb46d11a43d5d'
 
-  const [item , setItem]= useState('chicken')
   const [dishes , setDishes ] = useState([])
-  // const [item , setItem]= useState('')
+  
+  const [queryTemp , setQueryTemp]= useState("") // temporary query
+  const [query , setQuery]= useState("chicken")
 
-    useEffect( () => {
-      getDishes()
-    } , [])
 
+  const updateQueryTemp = e => {
+    setQueryTemp(e.target.value);
+    console.log(queryTemp);
+  }
+
+  const updateFinalQuery = e => {
+    // runs when we submit the form
+    e.preventDefault();
+    console.log(queryTemp)
+    setQuery(queryTemp)
+    console.log(query)
+    setQueryTemp("")
+  }
+
+
+  useEffect( () => {
+     getDishes()
+  } , [query])
 
   const getDishes = async () => {
-    const recipeData = await fetch(` https://api.edamam.com/search?q=${item}&app_id=${ID}&app_key=${KEY}`)
+    const recipeData = await fetch(` https://api.edamam.com/search?q=${query}&app_id=${ID}&app_key=${KEY}`)
     const data = await recipeData.json();
     setDishes(data.hits)
   }
@@ -25,10 +41,12 @@ function App() {
   return (
     <div className="App">
       <h1>Recipe App</h1>
-        <div className="searchBox">
-          <input className="searchBar" type="text" name="" id="" />
-          <button className="button" type="submit" > Search </button>
-        </div>
+        <form onSubmit={updateFinalQuery}>
+        
+            <input className="searchBar" type="text" value={queryTemp} onChange={updateQueryTemp} />    
+            <button className="button" type="submit"> Search </button>
+          
+        </form>
 
         <div className="dishesContainer">
           {dishes.map(dish => {
