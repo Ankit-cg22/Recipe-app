@@ -6,10 +6,17 @@
   border: 1px solid black;
   width: 40%;
   margin: 1rem;
-  background: rgb(159, 206, 159);
   border-radius: 10px;
   width: 80%;
   padding: 1rem;
+
+  background: linear-gradient(
+    to right bottom,
+    rgba(162, 206, 182, 0.7),
+    rgba(162, 206, 182, 0.4)
+  );
+
+  backdrop-filter: blur(1.5rem);
 }
 
 .ingredients {
@@ -34,4 +41,10 @@ img {
 
 .title {
   margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+  .template .ingredients {
+    display: none;
+  }
 }

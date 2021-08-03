@@ -43,7 +43,7 @@ function App() {
       <h1>Recipe App</h1>
         <form onSubmit={updateFinalQuery}>
         
-            <input className="searchBar" type="text" value={queryTemp} onChange={updateQueryTemp} />    
+            <input className="searchBar" type="text" value={queryTemp} onChange={updateQueryTemp} placeholder =" Seach your dish..."/>    
             <button className="button" type="submit"> Search </button>
           
         </form>
